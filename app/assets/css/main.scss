@@ -1,5 +1,39 @@
+$pixelHeight: 10px;
+$pixelWidth: 10px;
+
+@mixin box-sizing ($type: border-box ){
+	-webkit-box-sizing: $type;
+	-moz-box-sizing: $type;
+	box-sizing: $type;
+}
+
 body{
-	div.canvas{
-		background-color: red;
+	margin: 0;
+
+	div.container{
+		@include box-sizing;
+		height: 100vh;
+		width: 100vw;
+		padding: 10px;
+		
+		div.canvas{
+  			font-size: 0;
+			height: 100%;
+			width:100%;
+			text-align: center;
+
+			div.row{
+				width: 100%;
+
+				div.col{
+					@include box-sizing;
+					border: #000 solid 1px;
+					border-collapse: collapse;
+					width: $pixelWidth;
+					height: $pixelHeight;
+					display: inline-block;
+				}
+			}
+		}
 	}
 }

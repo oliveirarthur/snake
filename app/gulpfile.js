@@ -14,7 +14,7 @@ function setEnv(env) {
 	if (env === 'dev') {
 		CONSTS.dst = '../.tmp/';
 	} else if (env === 'prod'){
-		CONSTS.dst = '../';
+		CONSTS.dst = '../game';
 	} else {
 		console.log('Invalid env option: ' + env);
 		return false;
@@ -51,7 +51,9 @@ var assets = {
 	js: [
 		//'bower_components/bootstrap/dist/js/bootstrap.min.js',
 		'bower_components/jquery/dist/jquery.min.js',
-		'assets/js/**/*.js',
+		'assets/js/drawCanvas.js',
+		'assets/js/loop.js',
+		'assets/js/main.js',
 	]
 }
 
