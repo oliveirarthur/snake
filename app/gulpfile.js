@@ -14,7 +14,7 @@ function setEnv(env) {
 	if (env === 'dev') {
 		CONSTS.dst = '../.tmp/';
 	} else if (env === 'prod'){
-		CONSTS.dst = '../game';
+		CONSTS.dst = '../game/';
 	} else {
 		console.log('Invalid env option: ' + env);
 		return false;
