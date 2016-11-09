@@ -18,6 +18,7 @@ And to deploy to the folder **game** and push to **gh-pages** branch do the foll
 ```
 cd app
 gulp build --env prod
-git add .
+git add game
+git commit -m 
 git subtree push --prefix game origin gh-pages
 ```
