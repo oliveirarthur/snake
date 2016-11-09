@@ -1,5 +1,4 @@
-$pixelHeight: 10px;
-$pixelWidth: 10px;
+$pixelSize: 10px;
 
 @mixin box-sizing ($type: border-box ){
 	-webkit-box-sizing: $type;
@@ -9,6 +8,7 @@ $pixelWidth: 10px;
 
 body{
 	margin: 0;
+	padding: 0;
 
 	div.container{
 		@include box-sizing;
@@ -19,20 +19,18 @@ body{
 		div.canvas{
   			font-size: 0;
 			height: 100%;
-			width:100%;
+			width: 100%;
 			text-align: center;
+			border: #000 dotted 1px;
+			position: relative;
 
-			div.row{
-				width: 100%;
-
-				div.col{
-					@include box-sizing;
-					border: #000 solid 1px;
-					border-collapse: collapse;
-					width: $pixelWidth;
-					height: $pixelHeight;
-					display: inline-block;
-				}
+			div.snake{
+				@include box-sizing;
+				position: absolute;
+				background-color: #000;
+				height: $pixelSize;
+				width: $pixelSize;
+				border: #FFF solid 1px;
 			}
 		}
 	}
