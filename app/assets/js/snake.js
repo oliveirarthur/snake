@@ -72,10 +72,10 @@ function Snake(canvas, pixelSize) {
 		}
 
 		if(newHead.x > snake.totalRows()) newHead.x = 0;
-		if(newHead.x < 0) newHead.x = snake.totalRows()-1;
 		if(newHead.y > snake.totalColumns()) newHead.y = 0;
-		if(newHead.y < 0) newHead.y = snake.totalColumns()-1;
-// console.table(snake.positions);
+		if(newHead.x < 0) newHead.x = snake.totalRows() - 1;
+		if(newHead.y < 0) newHead.y = snake.totalColumns() - 1;
+
 		snake.pop();
 		snake.unshift(newHead.x, newHead.y);
 
@@ -90,13 +90,11 @@ function Snake(canvas, pixelSize) {
 				left: snake.positions[i].y * snake.pixelSize
 			});
 			snake.canvas.append(newPixel);
-//			return;
 		}
 	};
 
 	if (!snake.positions.length) {	// initialize the positions
 		var initial = coord(Math.ceil(snake.totalRows()/2), Math.ceil(snake.totalColumns()/2));
-//		var initial = coord(7, 70);
 		for (var i = 0; i < 4; i++) {
 			snake.push(initial.x + i, initial.y);
 		}

@@ -6,16 +6,21 @@ $(document).ready(function () {
 		;
 
 	snake.setDirection(38);	// start upwards
-	$(document).on('keydown', function (event) {
+
+	function changeSnakeDirection(event) {
 		if (snake.isValidDirectionKey(event.which)) {
 			snake.setDirection(event.which);
 		}
-	});
+	};
 
-	$(document).on('keyup', function (event) {
-		// event.preventDefault();
-		// loop();
-	});
+	// touch events
+	$(document).on('swipeleft', changeSnakeDirection);
+	$(document).on('swiperight', changeSnakeDirection);
+	$(document).on('swipedown', changeSnakeDirection);
+	$(document).on('swipeup', changeSnakeDirection);
+
+	// keyboard events
+	$(document).on('keydown', changeSnakeDirection);
 
 	setInterval(function () {
 //	setTimeout(function () {
