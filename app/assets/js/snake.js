@@ -15,11 +15,11 @@ function Snake(canvas, pixelSize) {
 		snake.canvas = canvas;
 	};
 	snake.totalRows = function () {	// number of rows to be rendered
-		return Math.floor(snake.canvas.innerHeight()/snake.pixelSize);
-	}
+		return Math.ceil(snake.canvas.innerHeight()/snake.pixelSize) - 1;
+	};
 	snake.totalColumns = function () {	// number of columns each row contains
-		return Math.floor(snake.canvas.innerWidth()/snake.pixelSize);
-	}
+		return Math.ceil(snake.canvas.innerWidth()/snake.pixelSize) - 1;
+	};
 	snake.push = function (x, y) {	// Adds new elements to the end of an array, and returns the new length
 		return snake.positions.push(coord(x, y));
 	};
@@ -67,21 +67,19 @@ function Snake(canvas, pixelSize) {
 				break;
 
 			default:
-				console.log('Where should I go? ' + snake.direction);
+				console.log('Should stay or should I go? ' + snake.direction);
 				break;
 		}
 
 		if(newHead.x > snake.totalRows()) newHead.x = 0;
 		if(newHead.y > snake.totalColumns()) newHead.y = 0;
-		if(newHead.x < 0) newHead.x = snake.totalRows() - 1;
-		if(newHead.y < 0) newHead.y = snake.totalColumns() - 1;
+		if(newHead.x < 0) newHead.x = snake.totalRows();
+		if(newHead.y < 0) newHead.y = snake.totalColumns();
 
 		snake.pop();
 		snake.unshift(newHead.x, newHead.y);
-
 	};
 	snake.draw = function () {
-		snake.canvas.html('');
 		for (var i = 0; i < snake.positions.length; i++) {
 			var newPixel = $('<div></div>');
 			newPixel.addClass('snake');
@@ -92,7 +90,43 @@ function Snake(canvas, pixelSize) {
 			snake.canvas.append(newPixel);
 		}
 	};
+	snake.verifyCollision = function (apple) {
+		if(
+			(apple.position.x == snake.positions[0].x) &&
+			(apple.position.y == snake.positions[0].y)
+		){
+			return true;
+		}
+		return false;
+	};
+	snake.grow = function (number) {
+		if (!number) {number = 1;}
+		for (var i = 0; i < number; i++) {
+			var lastPosition = coord(
+				snake.positions[snake.positions.length-1].x, 
+				snake.positions[snake.positions.length-1].y
+			);
+			switch(snake.direction){
+				case '^':
+					lastPosition.x++;
+					break;
+				case 'v':
+					lastPosition.x--;
+					break; 
+				case '<':
+					lastPosition.y++;
+					break;
+				case '>': 
+					lastPosition.y--;
+					break;
 
+				default:
+					console.log('Should I stay or should I grow? ' + snake.direction);
+					break;
+			}
+			snake.unshift(lastPosition.x, lastPosition.y);
+		}
+	}
 	if (!snake.positions.length) {	// initialize the positions
 		var initial = coord(Math.ceil(snake.totalRows()/2), Math.ceil(snake.totalColumns()/2));
 		for (var i = 0; i < 4; i++) {

@@ -24,7 +24,7 @@ body{
 			border: #000 dotted 1px;
 			position: relative;
 
-			div.snake{
+			div.snake, div.apple{
 				@include box-sizing;
 				position: absolute;
 				background-color: #000;
