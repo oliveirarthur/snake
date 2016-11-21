@@ -129,7 +129,13 @@ function Snake(canvas, pixelSize) {
 	}
 	if (!snake.positions.length) {	// initialize the positions
 		var initial = coord(Math.ceil(snake.totalRows()/2), Math.ceil(snake.totalColumns()/2));
-		for (var i = 0; i < 4; i++) {
+		var initialSize = Math.ceil(snake.totalRows()/10);
+
+		if (initialSize < 4){
+			initialSize = 4;
+		}
+
+		for (var i = 0; i < initialSize; i++) {
 			snake.push(initial.x + i, initial.y);
 		}
 	}
