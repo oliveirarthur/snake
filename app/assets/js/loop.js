@@ -1,6 +1,6 @@
 function Loop(canvas, snake, apple) {
 	var loop = this;
-	loop.interval = 500;
+	loop.interval = 200;
 
 	setInterval(function () {
 //	setTimeout(function () {
