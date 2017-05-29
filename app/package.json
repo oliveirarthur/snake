@@ -4,6 +4,7 @@
   "description": "Snake game with HTML, CSS and JS",
   "main": "index.html",
   "scripts": {
+    "start": "gulp browser-sync",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
